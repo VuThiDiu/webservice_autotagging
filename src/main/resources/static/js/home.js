@@ -90,7 +90,7 @@ prototype.AutoTaggingAPI = function(fileInput, loginResponse){
                 prototype.hideLoading();
                 $("#result").val(JSON.stringify(response, null, 4)) ;
                 $("#preview").attr("src", response.imageURL);
-                $("#result")[0].style.height = "480px";
+                $("#result")[0].style.height = "450px";
 
         })
         .fail(function(response){
