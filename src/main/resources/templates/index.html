@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="~{layouts/layout}" lang="vi">
+<head>
+<!--  <th:block th:fragment="meta-data">-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="UTF-8">
+    <meta name="description" content="overview stats"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta name="_csrf" content="something"/>
+    <meta name="_csrf_header" content="something"/>
+<!--  </th:block>-->
+  <title>Login</title>
+  <script type="text/javascript" th:src="@{/js/jquery/jquery.bundles.js}"></script>
+  <script th:src="@{/js/bootstrap/bootstrap.bundles.js}"></script>
+  <script th:src="@{/js/bootstrapSelect/bootstrapSelect.bundles.js}"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <script type="text/javascript" th:src="@{/js/script.js}"></script>
+  <script type="text/javascript" th:src="@{/js/base.js}"></script>
+</head>
+<body>
+<th:block layout:fragment="page-content">
+<p class="tip">AUTOMATIC TAGGING SYSTEM</p>
+<div class="cont">
+  <form class="form sign-in" role="form" th:action="@{/login}" method="post" th:object="${loginForm}">
+    <h2>Welcome back,</h2>
+    <label>
+      <span>User Name</span>
+      <input type="text" class="form-control" id="usernameLogin" placeholder="User Name" th:field="*{username}" required/>
+    </label>
+    <label>
+      <span>Password</span>
+      <input type="password" class="form-control" id="passwordLogin" placeholder="Password" th:field="*{password}" required/>
+    </label>
+    <p class="forgot-pass">Forgot password?</p>
+    <button type="button" class="submit signIn">Sign In</button>
+  </form>
+  <div class="sub-cont">
+    <div class="img">
+      <div class="img__text m--up">
+        <h2>New here?</h2>
+        <p>Sign up and discover great amount of new opportunities!</p>
+      </div>
+      <div class="img__text m--in">
+        <h2>One of us?</h2>
+        <p>If you already has an account, just sign in. We've missed you!</p>
+      </div>
+      <div class="img__btn">
+        <span class="m--up">Sign Up</span>
+        <span class="m--in">Sign In</span>
+      </div>
+    </div>
+    <form class="form sign-up" role="form" th:action="@{/register}" method="post" th:object="${registerForm}">
+      <h2>Time to feel like home,</h2>
+      <label>
+        <span>User Name</span>
+        <input th:field="*{username}" class="formm-control" id="username" placeholder="Enter Username" type="text" />
+      </label>
+      <label>
+        <span>Password</span>
+        <input th:field="*{password}" class="formm-control" id="password" placeholder="Enter password" type="password" />
+      </label>
+      <label>
+        <span>Confirm Password</span>
+        <input th:field="*{password}" class="formm-control" id="confirm" placeholder="Enter password" type="password" />
+      </label>
+      <button type="button" class="submit signUp">Sign Up</button>
+    </form>
+  </div>
+</div>
+
+<!--<a href="https://dribbble.com/shots/3306190-Login-Registration-form" target="_blank" class="icon-link">-->
+<!--  <img src="http://icons.iconarchive.com/icons/uiconstock/socialmedia/256/Dribbble-icon.png">-->
+<!--</a>-->
+<!--<a href="https://twitter.com/NikolayTalanov" target="_blank" class="icon-link icon-link&#45;&#45;twitter">-->
+<!--  <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/twitter-128.png">-->
+<!--</a>-->
+</th:block>
+
+</body>
+</html>

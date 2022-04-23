@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}" lang="vi" >
+<head>
+  <meta charset="UTF-8">
+  <title>Automatic Tagging System </title>
+    <script type="text/javascript" th:src="@{/js/jquery/jquery.bundles.js}"></script>
+    <script th:src="@{/js/bootstrap/bootstrap.bundles.js}"></script>
+    <script th:src="@{/js/bootstrapSelect/bootstrapSelect.bundles.js}"></script>
+    <script type="text/javascript" th:src="@{/js/home.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<section>
+    <div class="container">
+        <div class="container-header">
+            <h1 class="container-header-text">Automatic Tagging System</h1>
+        </div>
+        <div class="container-content">
+            <form class="form">
+                <p class="description-text">This is a webservice <b>Automatic Tagging System for Images of Clothing Products</b> </p>
+                <input type="text" class="form-input" id="url" value="This is a value for textarea" disabled>
+                <i id="btn_clipboard"class="fa" >&#xf24d;</i>
+                <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg" multiple>
+                <div id="divPreview" class="form-group" style="margin-top: 16px">
+                    <label class="col-md-4 col-md-offset-1 control-label text-right"></label>
+                    <img id="preview"/>
+                    <div class="col-md-offset-2"></div>
+                </div>
+            </form>
+            <div class="description">
+                <textarea class="form-control textarea-autosize" rows="50" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 40px; width: 400px" id="result" disabled></textarea>
+            </div>
+        </div>
+        <div class="loading">
+            <div class="vs-loading__load vs-loading--default">
+                <div class="lds">
+                    <div class="lds__1"></div>
+                    <div class="lds__2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- partial -->
+</body>
+</html>
