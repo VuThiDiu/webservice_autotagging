@@ -22,7 +22,7 @@
         <div class="container-content">
             <form class="form">
                 <p class="description-text">This is a webservice <b>Automatic Tagging System for Images of Clothing Products</b> </p>
-                <input type="text" class="form-input" id="url" value="This is a value for textarea" disabled>
+                <input type="text" class="form-input" id="url" th:value="${url}" disabled>
                 <i id="btn_clipboard"class="fa" >&#xf24d;</i>
                 <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg" multiple>
                 <div id="divPreview" class="form-group" style="margin-top: 16px">
