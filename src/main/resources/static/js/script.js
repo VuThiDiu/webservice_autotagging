@@ -1,7 +1,6 @@
 var prototype = Controller.prototype;
-//var token = $("meta[name='_csrf']").attr("content");
-//var header = $("meta[name='_csrf_header']").attr("content");
-//var baseController = BaseController.prototype;
+
+// phải tạo tên token khác để
 function Controller(){
     document.querySelector('.img__btn').addEventListener('click', function() {
       document.querySelector('.cont').classList.toggle('s--signup');
@@ -46,10 +45,10 @@ prototype.callAPILogin = function(json){
                 success : function(data, status){
                     if(status=='success'){
                         console.log(data);
-                        localStorage.setItem("loginResponse",JSON.stringify(data) );
+                        localStorage.setItem("autoTaggingSystemToken",JSON.stringify(data) );
                         window.location.replace('/auto_tagging/home');
                     }else{
-                        alert("account is not existed! Plx check  infomation login");
+                        alert("account is not existed! Plx check infomation login");
                         window.location.reload();
                     }
                 },
@@ -78,22 +77,13 @@ prototype.register = function( json){
                             window.location.replace("/login");
                         }else{
                             alert("Error!");
-//                            window.location.reload();
                         }
                     },
                     error: function (e){
                         alert("Error! Plz check infomation");
-//                        window.location.reload();
                     }
                 });
 }
-
-
-//prototype.showAlertFail = function (body_text) {
-//  $("#showDialogFailAlert #alertFail_body").text(body_text);
-//  $("#showDialogFailAlert").modal('show');
-//};
-
 
 prototype.checkPassword = function(password, confirmPass){
        if(prototype.validatePassword(password)){

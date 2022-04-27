@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/auto_tagging")
 public class HomeController {
 
-    private static String url = "https://e8ae-2402-800-61ae-c2f8-b849-7f71-b0a7-3e6c.ngrok.io/";
+//    private static String url = "https://e8ae-2402-800-61ae-c2f8-b849-7f71-b0a7-3e6c.ngrok.io/";
+    private static String url = "localhost:/8080/";
     @GetMapping("/home")
     public String getHome(Model model){
         model.addAttribute("url" , url + "auto_tagging/autoTaggingImage");

@@ -3,8 +3,8 @@ var prototype = HomeController.prototype;
 function HomeController(){
     prototype.hideLoading();
     $(function loadData(){
-            if(window.localStorage.getItem('loginResponse')!=null){
-                var loginResponse = JSON.parse(localStorage.getItem("loginResponse"));
+            if(window.localStorage.getItem('autoTaggingSystemToken')!=null){
+                var loginResponse = JSON.parse(localStorage.getItem("autoTaggingSystemToken"));
                 let fileInput = document.getElementById("file-input");
                 $("#file-input").on('change', function(){
                     if(fileInput.files.length <= 10){
