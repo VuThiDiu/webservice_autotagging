@@ -49,10 +49,8 @@ public class AutomateTaggingClothesController {
                 InputStream inputStream = file.getInputStream();
                 BufferedImage input = ImageIO.read(inputStream);
                 image = loadModel.prediction(input);
-                image.setUrlImage(imageUrl);
-                // save into database
-                imageService.saveImage(image );
-                return new ResponseEntity<TagResponse>(new TagResponse(image.getTagCategory(), image.getTagColor(), image.getUrlImage()), HttpStatus.OK);
+
+                return new ResponseEntity<TagResponse>(new TagResponse(image.getTagCategory(), image.getTagColor()), HttpStatus.OK);
             }catch (Exception e){
                 return new ResponseEntity<TagResponse>(new TagResponse(), HttpStatus.EXPECTATION_FAILED);
             }

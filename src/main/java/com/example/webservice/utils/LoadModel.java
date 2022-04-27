@@ -26,7 +26,7 @@ public class LoadModel {
     public Image prediction(BufferedImage image) throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
         int predictionForCategory = predictionForCategory(image);
         int predictionForColor = predictionForColor(image);
-        return new Image( "", tagCategory.get(predictionForCategory), tagColor.get(predictionForColor));
+        return new Image(tagCategory.get(predictionForCategory), tagColor.get(predictionForColor));
 
     }
     public int  predictionForCategory(BufferedImage image) throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {

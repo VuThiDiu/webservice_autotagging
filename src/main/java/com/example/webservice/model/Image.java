@@ -14,15 +14,11 @@ public class Image {
     @Column(columnDefinition = "CHAR(32)")
     @Id
     private String id;
-
-    private String urlImage;
-
     private String tagCategory;
 
     private String tagColor;
 
-    public Image(String urlImage, String tagCategory, String tagColor) {
-        this.urlImage = urlImage;
+    public Image( String tagCategory, String tagColor) {
         this.tagCategory = tagCategory;
         this.tagColor = tagColor;
     }

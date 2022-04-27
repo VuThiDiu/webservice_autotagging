@@ -19,8 +19,10 @@ function HomeController(){
                                 for (i of fileInput.files){
                                     let formData = new FormData();
                                     formData.append("file", i);
+                                    file = fileInput.files[0];
+                                    imageURL = URL.createObjectURL(file);
+                                    $("#preview").attr("src", imageURL);
                                     $("#result")[0].style.height = "450px";
-                                    // xd kiểu dữ liệu trả về
                                     if (dataType == "JSON"){
                                         prototype.AutoTaggingAPIForJSON(formData, loginResponse);
                                     }else{
@@ -103,7 +105,7 @@ prototype.AutoTaggingAPIForJSON = function(fileInput, loginResponse){
             success : function(response){
                     prototype.hideLoading();
                     $("#result").val(JSON.stringify(response, null, 4)) ;
-                    $("#preview").attr("src", response.imageURL);
+//                    $("#preview").attr("src", response.imageURL);
             },
             error: function(e){
             prototype.hideLoading();
@@ -130,7 +132,7 @@ prototype.AutoTaggingAPIForXML = function(fileInput, loginResponse){
                     prototype.hideLoading();
                     response = prototype.parseXML(response);
                     $("#result").val(response) ;
-                     $("#preview").attr("src", response.split("<imageURL>")[1].split("</imageURL>")[0]);
+//                     $("#preview").attr("src", response.split("<imageURL>")[1].split("</imageURL>")[0]);
             },
             error: function(e){
             prototype.hideLoading();
