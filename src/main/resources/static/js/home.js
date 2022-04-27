@@ -1,7 +1,15 @@
 var prototype = HomeController.prototype;
-
+var dataType = "JSON";
 function HomeController(){
     prototype.hideLoading();
+    $("[name=radiosDataType]").on("change", function(){
+        if($(this).val() == "JSON"){
+            dataType = "JSON";
+        }else{
+            dataType = "XML";
+        }
+
+    });
     $(function loadData(){
             if(window.localStorage.getItem('autoTaggingSystemToken')!=null){
                 var loginResponse = JSON.parse(localStorage.getItem("autoTaggingSystemToken"));
@@ -11,7 +19,14 @@ function HomeController(){
                                 for (i of fileInput.files){
                                     let formData = new FormData();
                                     formData.append("file", i);
-                                    prototype.AutoTaggingAPI(formData, loginResponse);
+                                    $("#result")[0].style.height = "450px";
+                                    // xd kiểu dữ liệu trả về
+                                    if (dataType == "JSON"){
+                                        prototype.AutoTaggingAPIForJSON(formData, loginResponse);
+                                    }else{
+                                        prototype.AutoTaggingAPIForXML(formData, loginResponse);
+                                    }
+
                             }
                     }else{
                         alert("At most 10 files at times");
@@ -71,33 +86,81 @@ function HomeController(){
 
 
 }
-
-prototype.AutoTaggingAPI = function(fileInput, loginResponse){
+prototype.AutoTaggingAPIForJSON = function(fileInput, loginResponse){
     $.ajax({
             method:"post",
                 url: `autoTaggingImage`,
             headers:{
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
+                "Accept" : "application/json"
             },
             beforeSend: function(xhr){
                   prototype.showLoading();
               },
             data:fileInput,
             processData: false,
-            contentType: false
-        })
-        .done(function(response){
-                prototype.hideLoading();
-                $("#result").val(JSON.stringify(response, null, 4)) ;
-                $("#preview").attr("src", response.imageURL);
-                $("#result")[0].style.height = "450px";
-
-        })
-        .fail(function(response){
+            contentType: false,
+            success : function(response){
+                    prototype.hideLoading();
+                    $("#result").val(JSON.stringify(response, null, 4)) ;
+                    $("#preview").attr("src", response.imageURL);
+            },
+            error: function(e){
             prototype.hideLoading();
-            alert("fail to upload image");
-        });
+                        alert("fail to upload image");
+            }
+        })
 }
+prototype.AutoTaggingAPIForXML = function(fileInput, loginResponse){
+    $.ajax({
+            method:"post",
+                url: `autoTaggingImage`,
+            headers:{
+                "Authorization": `Bearer ${loginResponse.accessToken}`,
+                "Accept" : "application/xml"
+            },
+            beforeSend: function(xhr){
+                  prototype.showLoading();
+              },
+            data:fileInput,
+            processData: false,
+            contentType: false,
+            dataType: "text",
+            success : function(response){
+                    prototype.hideLoading();
+                    response = prototype.parseXML(response);
+                    $("#result").val(response) ;
+                     $("#preview").attr("src", response.split("<imageURL>")[1].split("</imageURL>")[0]);
+            },
+            error: function(e){
+            prototype.hideLoading();
+                        alert("fail to upload image");
+            }
+        })
+}
+prototype.parseXML = function(sourceXml)
+{
+    var xmlDoc = new DOMParser().parseFromString(sourceXml, 'application/xml');
+    var xsltDoc = new DOMParser().parseFromString([
+        // describes how we want to modify the XML - indent everything
+        '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform">',
+        '  <xsl:strip-space elements="*"/>',
+        '  <xsl:template match="para[content-style][not(text())]">', // change to just text() to strip space in text nodes
+        '    <xsl:value-of select="normalize-space(.)"/>',
+        '  </xsl:template>',
+        '  <xsl:template match="node()|@*">',
+        '    <xsl:copy><xsl:apply-templates select="node()|@*"/></xsl:copy>',
+        '  </xsl:template>',
+        '  <xsl:output indent="yes"/>',
+        '</xsl:stylesheet>',
+    ].join('\n'), 'application/xml');
+
+    var xsltProcessor = new XSLTProcessor();
+    xsltProcessor.importStylesheet(xsltDoc);
+    var resultDoc = xsltProcessor.transformToDocument(xmlDoc);
+    var resultXml = new XMLSerializer().serializeToString(resultDoc);
+    return resultXml;
+};
 
 prototype.showLoading = function() {
             $(".loading").show()
