@@ -12,10 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -27,6 +24,7 @@ import java.io.InputStream;
 
 @Controller
 @RequestMapping("/auto_tagging")
+@CrossOrigin
 public class AutomateTaggingClothesController {
     @Autowired
     IImageService iImageService;
@@ -49,8 +47,7 @@ public class AutomateTaggingClothesController {
                 InputStream inputStream = file.getInputStream();
                 BufferedImage input = ImageIO.read(inputStream);
                 image = loadModel.prediction(input);
-
-                return new ResponseEntity<TagResponse>(new TagResponse(image.getTagCategory(), image.getTagColor()), HttpStatus.OK);
+                return new ResponseEntity<TagResponse>(new TagResponse(image.getTagCategory(), image.getTagColor(), imageUrl), HttpStatus.OK);
             }catch (Exception e){
                 return new ResponseEntity<TagResponse>(new TagResponse(), HttpStatus.EXPECTATION_FAILED);
             }

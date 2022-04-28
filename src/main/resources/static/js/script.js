@@ -1,6 +1,5 @@
 var prototype = Controller.prototype;
 
-// phải tạo tên token khác để
 function Controller(){
     document.querySelector('.img__btn').addEventListener('click', function() {
       document.querySelector('.cont').classList.toggle('s--signup');
@@ -15,6 +14,8 @@ function Controller(){
         }
         prototype.callAPILogin(json);
     });
+
+
 
     $("button.signUp").click(function(){
         var username = $("#username").val();
@@ -58,7 +59,6 @@ prototype.callAPILogin = function(json){
                 }
             });
 }
-
 
 prototype.register = function( json){
         $.ajax({
