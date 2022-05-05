@@ -12,7 +12,7 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
     private final String JWT_SECRET =  "automate_tagging_model";
-    private final long JWT_EXPIRATION = 30L*1000L*60L*24L*60L;
+    private final long JWT_EXPIRATION = 90L*1000L*60L*24L*60L;
 
     public  String generateToken (CustomUserDetails userDetails){
         Date now = new Date();

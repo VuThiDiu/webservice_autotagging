@@ -23,51 +23,50 @@
 </head>
 <body>
 <th:block layout:fragment="page-content">
-<p class="tip">AUTOMATIC TAGGING SYSTEM</p>
+<p class="tip"><b>DỊCH VỤ TỰ ĐỘNG ĐÁNH NHÃN DỮ LIỆU HÌNH ẢNH QUẦN ÁO THỜI TRANG</b> </p>
 <div class="cont">
   <form class="form sign-in" role="form" th:action="@{/login}" method="post" th:object="${loginForm}">
-    <h2>Welcome back,</h2>
     <label>
-      <span>User Name</span>
-      <input type="text" class="form-control" id="usernameLogin" placeholder="User Name" th:field="*{username}" required/>
+      <span>TÊN ĐĂNG NHẬP</span>
+      <input type="text" class="form-control" id="usernameLogin" placeholder="TÊN ĐĂNG NHẬP" th:field="*{username}" required/>
     </label>
     <label>
-      <span>Password</span>
-      <input type="password" class="form-control" id="passwordLogin" placeholder="Password" th:field="*{password}" required/>
+      <span>MẬT KHẨU</span>
+      <input type="password" class="form-control" id="passwordLogin" placeholder="MẬT KHẨU" th:field="*{password}" required/>
     </label>
-    <p class="forgot-pass">Forgot password?</p>
-    <button type="button" class="submit signIn">Sign In</button>
+    <p class="forgot-pass">QUÊN MẬT KHẨU</p>
+    <button type="button" class="submit signIn">ĐĂNG NHẬP</button>
   </form>
   <div class="sub-cont">
     <div class="img">
-      <div class="img__text m--up">
-        <h2>New here?</h2>
-        <p>Sign up and discover great amount of new opportunities!</p>
-      </div>
-      <div class="img__text m--in">
-        <h2>One of us?</h2>
-        <p>If you already has an account, just sign in. We've missed you!</p>
-      </div>
+<!--      <div class="img__text m&#45;&#45;up">-->
+<!--        <h2>New here?</h2>-->
+<!--        <p>Sign up and discover great amount of new opportunities!</p>-->
+<!--      </div>-->
+<!--      <div class="img__text m&#45;&#45;in">-->
+<!--&lt;!&ndash;        <h2>One of us?</h2>&ndash;&gt;-->
+<!--        <p>If you already has an account, just sign in. We've missed you!</p>-->
+<!--      </div>-->
       <div class="img__btn">
-        <span class="m--up">Sign Up</span>
-        <span class="m--in">Sign In</span>
+        <span class="m--up">ĐĂNG KÝ</span>
+        <span class="m--in">ĐĂNG NHẬP</span>
       </div>
     </div>
     <form class="form sign-up" role="form" th:action="@{/register}" method="post" th:object="${registerForm}">
-      <h2>Time to feel like home,</h2>
+<!--      <h2>Time to feel like home,</h2>-->
       <label>
-        <span>User Name</span>
-        <input th:field="*{username}" class="formm-control" id="username" placeholder="Enter Username" type="text" />
+        <span>TÊN ĐĂNG NHẬP</span>
+        <input th:field="*{username}" class="formm-control" id="username" placeholder="TÊN ĐĂNG NHẬP" type="text" />
       </label>
       <label>
-        <span>Password</span>
-        <input th:field="*{password}" class="formm-control" id="password" placeholder="Enter password" type="password" />
+        <span>MẬT KHẨU</span>
+        <input th:field="*{password}" class="formm-control" id="password" placeholder="MẬT KHẨU" type="password" />
       </label>
       <label>
-        <span>Confirm Password</span>
-        <input th:field="*{password}" class="formm-control" id="confirm" placeholder="Enter password" type="password" />
+        <span>XÁC THỰC MẬT KHẨU</span>
+        <input th:field="*{password}" class="formm-control" id="confirm" placeholder="XÁC THỰC MẬT KHẨU" type="password" />
       </label>
-      <button type="button" class="submit signUp">Sign Up</button>
+      <button type="button" class="submit signUp">ĐĂNG KÝ</button>
     </form>
   </div>
 </div>

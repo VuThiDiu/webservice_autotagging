@@ -7,10 +7,10 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 95vw;
   height: 100vh;
-  background-color: #d6b89d;
-  font-family: "Arvo", serif;
+  background-color: #f9d5b3;
+
   color: rgba(0, 0, 0, 0.7);
 }
 
