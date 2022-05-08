@@ -40,7 +40,6 @@ public class AutomateTaggingClothesController {
             return new ResponseEntity<TagResponse>(new TagResponse(), HttpStatus.EXPECTATION_FAILED);
         }else{
             try{
-                // generate image
                 String fileName = iImageService.save(file);
                 String imageUrl = iImageService.getImageUrl(fileName);
                 InputStream inputStream = file.getInputStream();
