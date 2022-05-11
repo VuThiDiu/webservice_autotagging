@@ -55,7 +55,7 @@ public class LoginController {
         }catch (Exception e){
             LOGGER.debug(e.toString());
         }
-        return  new ResponseEntity(new LoginResponse(), HttpStatus.INTERNAL_SERVER_ERROR);
+        return  new ResponseEntity(new LoginResponse(), HttpStatus.BAD_REQUEST);
     }
 
 }
