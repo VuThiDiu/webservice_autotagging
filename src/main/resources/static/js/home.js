@@ -5,8 +5,10 @@ function HomeController(){
     $("[name=radiosDataType]").on("change", function(){
         if($(this).val() == "JSON"){
             dataType = "JSON";
+            prototype.xmltojson();
         }else{
             dataType = "XML";
+            prototype.json2xml();
         }
 
     });
@@ -87,6 +89,23 @@ function HomeController(){
             }});
 
 
+}
+
+prototype.json2xml = function(){
+    var x2js = new X2JS();
+    var new_xml = x2js.json2xml_str(JSON.parse($('#result').val()));
+    if(!new_xml.includes("TagResponse")){
+        new_xml = "<TagResponse>" + new_xml + "</TagResponse>";
+    }
+
+    new_xml= vkbeautify.xml(new_xml,3);
+    $('#result').val(new_xml);
+}
+
+prototype.xmltojson = function(){
+    var x2js = new X2JS();
+    var new_json = x2js.xml_str2json($('#result').val());
+    $("#result").val(JSON.stringify(new_json, null, 2)) ;
 }
 prototype.AutoTaggingAPIForJSON = function(fileInput, loginResponse){
     $.ajax({
